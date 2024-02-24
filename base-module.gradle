@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.google.devtools.ksp'
+
+
+android {
+    namespace = "com.ravisorathiya.dailyandroid"
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        versionCode ProjectConfig.versionCode
+        versionName ProjectConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
+}
+
+dependencies {
+
+    implementation(AndroidX.coreKtx)
+    implementation(AndroidX.appCompat)
+    implementation(AndroidX.constraintLayout)
+    implementation(AndroidX.actvityX)
+    implementation(AndroidX.fragmentX)
+    implementation(AndroidX.recycelrViewX)
+    implementation(Coroutines.coroutines)
+    implementation(AndroidX.lifecycle)
+    implementation(AndroidX.bioMetrciAndroidX)
+    implementation(AndroidX.jetpackDataStore)
+
+    implementation(Core.timber)
+
+    implementation(Google.material)
+    implementation(Google.inAppUpdate)
+    implementation(Google.androidXAppReview)
+    implementation(Google.billing)
+
+    implementation(Core.glide)
+
+    testImplementation(Testing.junit4)
+    testImplementation(Testing.junitAndroidExt)
+    testImplementation(Testing.espresso)
+
+    androidTestImplementation(Testing.junit4)
+    androidTestImplementation(Testing.junitAndroidExt)
+    androidTestImplementation(Testing.espresso)
+
+
+}
